@@ -6,6 +6,10 @@ Ever written a script to fetch some data, and then wanted to create an animated 
 
 Introducing Pipe-Graph and Pipe-Hist: **Use the power of the UNIX pipe!** Pipe incoming data into these small python scripts and get an animated realtime plot of the data!
 
+Contributions are Welcome! Just send create an issue or send a PR!
+
+**If you think this project is useful, please give it a star, so that other people can also see it!**
+
 ## Installation:
 
 Simply download the script, make sure it has executable permissions and it is in your `$PATH`. Also ensure you have a working matplotlib.
@@ -57,23 +61,24 @@ $ python bitcoin_prices.py | graph.py
 or,
 
 ```sh
-$ python pipe-graph/examples/sir_model.py
-Susceptible, Infected, Recovered/Removed
-998.8002,1.0998,0.1
-998.580503908008,1.209516091992,0.20998000000000003
-998.3389440702828,1.3301243205180433,0.33093160919920006
-998.0733610883572,1.462694870391876,0.4639440412510044
-997.7813857312494,1.6084007404604321,0.610213528290192
-....
-^C
-
-
 $ python pipe-graph/examples/sir_model.py | graph.py
 ```
 
 Output:
 
 ![SIR model](https://i.imgur.com/aKOnhSc.png)
+
+To simulataneously save results to a file while graphing it too, use the `tee` command:
+
+```sh
+$ python examples/coin_flips.py | tee simulation_results.txt | ./graph.py 
+$ cat simulation_results.txt
+heads
+484
+478
+477
+504...
+```
 
 ### Histograms:
 
@@ -121,7 +126,7 @@ while True:
 ```
 
 ```sh
-$ python pipe-graph/examples/coin-flip.py | hist.py
+$ python pipe-graph/examples/coin-flip.py | hist.py -b 50 -lo 450 -hi 550
 ```
 
 Output:
